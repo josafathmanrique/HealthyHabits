@@ -2,13 +2,15 @@
 :root {
   --primary-color: #4caf50;
   --secondary-color: #2196f3;
+  --button-hover: #1976d2;
+  --border-radius: 10px;
+  --transition-speed: 0.4s;
+  
+  /* Por defecto, el tema claro */
   --background-light: #f4f4f9;
   --background-dark: #333;
   --text-color-light: #333;
   --text-color-dark: #f4f4f4;
-  --button-hover: #1976d2;
-  --border-radius: 10px;
-  --transition-speed: 0.4s;
 }
 
 /* === TEMAS === */
