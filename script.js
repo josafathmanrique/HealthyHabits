@@ -5,6 +5,7 @@ emailjs.init('21plkRpze1kjwsSCX'); // Cambia este ID por el tuyo si es necesario
 document.getElementById("reminder-form").addEventListener("submit", function (event) {
     event.preventDefault();
 
+    
     // Obtener valores del formulario
     const habit = document.getElementById("habit").value.trim();
     const startDate = document.getElementById("start-date").value;
