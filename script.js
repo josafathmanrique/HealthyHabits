@@ -157,18 +157,35 @@ function showEmergencyNumbers(cityName) {
 
 // === Gestión de Temas ===
 function applyTheme(theme) {
+    // Cambia el atributo 'data-theme' para aplicar los estilos
     document.documentElement.setAttribute("data-theme", theme);
+
+    // Guarda la preferencia del usuario en localStorage
     localStorage.setItem("selected-theme", theme);
 }
 
 function loadSavedTheme() {
+    // Obtiene el tema guardado en localStorage o aplica 'light' por defecto
     const savedTheme = localStorage.getItem("selected-theme") || "light";
     applyTheme(savedTheme);
+    
+    // Si tienes un selector de tema (como un <select> o un botón), puedes sincronizarlo con el tema guardado
     const themeSelector = document.getElementById("theme");
-    if (themeSelector) themeSelector.value = savedTheme;
+    if (themeSelector) {
+        themeSelector.value = savedTheme;
+    }
 }
 
+// Cargar el tema guardado al cargar la página
 loadSavedTheme();
+
+// Si tienes un selector de tema en el HTML, puedes agregar un event listener para cambiarlo
+const themeSelector = document.getElementById("theme");
+if (themeSelector) {
+    themeSelector.addEventListener("change", function() {
+        applyTheme(themeSelector.value);  // Cambia el tema según la selección del usuario
+    });
+}
 
 // === Gestión de Medicamentos ===
 function saveMedication() {
