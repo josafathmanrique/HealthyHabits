@@ -95,7 +95,7 @@ let emergencyNumbers = {};
 
 async function loadEmergencyNumbers() {
     try {
-        const response = await fetch(emergencyDataURL);
+        const response = await fetch('emergency-numbers.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
