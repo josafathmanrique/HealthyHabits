@@ -90,16 +90,20 @@ window.startTimer = function() {
 
 
 // === NÚMEROS DE EMERGENCIA ===
-const emergencyDataURL = "./emergency-numbers.json";
+const emergencyDataURL = 'https://josafathmanrique.github.io/HealthyHabits/emergency-numbers.json';
 let emergencyNumbers = {};
 
 async function loadEmergencyNumbers() {
     try {
         const response = await fetch(emergencyDataURL);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         emergencyNumbers = await response.json();
         populateCityDropdown();
     } catch (error) {
         console.error("Error al cargar los números de emergencia:", error);
+        alert("No se pudieron cargar los números de emergencia. Por favor, inténtalo más tarde.");
     }
 }
 
