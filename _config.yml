@@ -1,0 +1,5 @@
+title: "HealthyHabits"
+description: "Transforma tu vida con hábitos saludables."
+baseurl: ""   # Deja vacío si no usas un subdirectorio
+url: "http://localhost:4000"  # Cambia esto si es para GitHub Pages
+destination: "_site"  # Directorio donde se generarán los archivos
