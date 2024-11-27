@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthyHabits</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h3 {
+            color: #4CAF50;
+        }
+
+        input, button, select {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HealthyHabits</h1>
+        <p>Transforma tu vida con hábitos saludables y herramientas avanzadas</p>
+    </header>
+    <main>
+        <!-- Configura tus Recordatorios -->
+        <section>
+            <h2>Configura tus Recordatorios</h2>
+            <form id="reminder-form">
+                <p class="section-legend">Esta sección te permite crear recordatorios personalizados para tus hábitos diarios. Configura fechas, horarios y frecuencias para mantener un estilo de vida saludable y recibe notificación por correo electrónico.</p>
+
+                <label for="habit">Hábito:</label>
+                <input type="text" id="habit" placeholder="Ejemplo: Beber agua" required>
+
+                <label for="start-date">Fecha de inicio:</label>
+                <input type="date" id="start-date" required>
+
+                <label for="end-date">Fecha de fin:</label>
+                <input type="date" id="end-date" required>
+
+                <label for="start-time">Hora de inicio:</label>
+                <input type="time" id="start-time" required>
+
+                <label for="end-time">Hora de fin:</label>
+                <input type="time" id="end-time" required>
+
+                <label for="frequency">Frecuencia:</label>
+                <select id="frequency" required>
+                    <option value="No se repite">No se repite</option>
+                    <option value="Diario">Diario</option>
+                    <option value="Semanal">Semanal</option>
+                </select>
+
+                <label for="timezone">Zona horaria:</label>
+                <select id="timezone" required>
+                    <option value="Local">Local</option>
+                    <option value="UTC">UTC</option>
+                </select>
+
+                <label for="email">Correo Electrónico (opcional):</label>
+                <input type="email" id="email" placeholder="ejemplo@correo.com">
+
+                <button type="submit">Guardar Recordatorio</button>
+            </form>
+        </section>
+
+        <!-- Gestión de Medicamentos -->
+        <section>
+            <h3>Gestión de Medicamentos</h3>
+            <p class="section-legend">Aquí puedes registrar los medicamentos que tomas, incluyendo dosis y horarios. Lleva un control organizado para no olvidar nada.</p>
+            <input id="medication-name" placeholder="Medicamento">
+            <input id="medication-dose" placeholder="Dosis">
+            <input id="medication-time" placeholder="Horario (Ej: 8:00 AM)">
+            <button onclick="saveMedication()">Guardar Medicamento</button>
+            <ul id="medication-list"></ul>
+        </section>
+
+        <!-- Seguimiento de Salud -->
+        <section>
+            <h3>Seguimiento de Salud</h3>
+            <p class="section-legend">Registra tus métricas de salud.</p>
+            <input id="health-metric" placeholder="Métrica (Ej: Peso, Presión)">
+            <input id="health-value" placeholder="Valor (Ej: 70 kg, 120/80)">
+            <button onclick="saveHealthMetric()">Guardar Métrica</button>
+            <ul id="health-metrics-list"></ul>
+        </section>
+        
+        <!-- Agenda de Citas Médicas -->
+<section>
+    <h3>Agenda de Citas Médicas</h3>
+    <form id="appointment-form">
+        <p class="section-legend">Guarda información sobre tus próximas citas médicas y recibe notificaciones recordatorias. ¡Nunca más olvides una consulta!</p>
+
+        <label for="appointment-date">Fecha:</label>
+        <input id="appointment-date" type="date" required>
+
+        <label for="appointment-time">Hora:</label>
+        <input id="appointment-time" type="time" required>
+
+        <label for="appointment-doctor">Médico o Especialidad:</label>
+        <input id="appointment-doctor" type="text" placeholder="Ejemplo: Dr. Pérez" required>
+
+        <label for="appointment-email">Correo Electrónico:</label>
+        <input id="appointment-email" type="email" placeholder="ejemplo@correo.com" required>
+
+        <button id="save-appointment-button" type="submit">Guardar Cita</button>
+    </form>
+    <ul id="appointment-list">
+        <!-- Aquí se mostrarán las citas guardadas -->
+    </ul>
+</section>
+
+        <!-- Temporizador de Tareas -->
+        <section>
+            <h3>Temporizador de Tareas</h3>
+            <p class="section-legend">Usa el temporizador para concentrarte en tareas específicas. Mejora tu productividad con esta herramienta.</p>
+            <input type="number" id="timer-minutes" placeholder="Minutos">
+            <button onclick="startTimer()">Iniciar Temporizador</button>
+            <p id="timer-display">00:00</p>
+        </section>
+
+        <!-- Lista de Compras -->
+        <section>
+            <h3>Lista de Compras</h3>
+            <p class="section-legend">Crea y gestiona tu lista de compras de forma sencilla. Agrega y elimina artículos según lo necesites.</p>
+            <input id="shopping-item" placeholder="Artículo de compra">
+            <button onclick="addShoppingItem()">Añadir</button>
+            <ul id="shopping-list"></ul>
+        </section>
+
+        <!-- Números de Emergencia -->
+        <section>
+            <h3>Números de Emergencia</h3>
+            <p class="section-legend">Consulta los números de emergencia locales según tu ciudad.</p>
+            <label for="city-select">Selecciona una ciudad:</label>
+            <select id="city-select" onchange="showEmergencyNumbers()">
+                <option value="" disabled selected>Selecciona una ciudad</option>
+            </select>
+            <div id="emergency-directory"></div>
+        </section>
+
+        <!-- Configuración -->
+        <section id="configuracion">
+            <h2>Configuración</h2>
+            <p class="section-legend">Personaliza la apariencia de la página.</p>
+            <label for="theme">Selecciona un tema:</label>
+            <select id="theme" onchange="applyTheme(this.value)">
+                <option value="light">Claro</option>
+                <option value="dark">Oscuro</option>
+            </select>
+        
+        <section>
+    <h3>Generar Imagen</h3>
+    <button id="generate-image-button">Generar Imagen</button>
+</section>
+
+    </main>
+    <footer>
+        <p>HealthyHabits © 2024 - Todos los derechos reservados</p>
+    </footer>
+    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</body>
+</html>
+

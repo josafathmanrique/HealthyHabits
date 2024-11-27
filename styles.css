@@ -1,0 +1,270 @@
+/* === VARIABLES GLOBALES === */
+:root {
+  --primary-color: #4caf50;
+  --secondary-color: #2196f3;
+  --background-light: #f4f4f9;
+  --background-dark: #333;
+  --text-color-light: #333;
+  --text-color-dark: #f4f4f4;
+  --button-hover: #1976d2;
+  --border-radius: 10px;
+  --transition-speed: 0.4s;
+}
+
+/* === TEMAS === */
+[data-theme="dark"] {
+  --background-light: #1a1a1a;
+  --background-dark: #252525;
+  --primary-color: #4caf50;
+  --text-color-light: #f0f0f0;
+  --text-color-dark: #cccccc;
+  --button-hover: #3e8e41;
+}
+
+[data-theme="light"] {
+  --background-light: #ffffff;
+  --background-dark: #f7f7f7;
+  --primary-color: #4caf50;
+  --text-color-light: #333333;
+  --text-color-dark: #222222;
+}
+
+/* === ESTILOS GENERALES === */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-color-light);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* === ENCABEZADO Y PIE DE PÁGINA === */
+header, footer {
+  background-color: var(--background-dark);
+  color: var(--text-color-light);
+  padding: 1rem;
+  text-align: center;
+}
+
+
+/* === SECCIONES === */
+section {
+  background-color: var(--background-dark);
+  color: var(--text-color-light);
+  padding: 2rem;
+  margin: 1rem auto;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* === TEXTOS === */
+h1, h2, h3, p {
+  color: var(--text-color-light);
+}
+
+/* === FORMULARIOS === */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+input, select, textarea {
+  background-color: var(--background-dark);
+  color: var(--text-color-light);
+  border: 1px solid var(--text-color-light);
+  padding: 0.8rem;
+  border-radius: var(--border-radius);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* === DIRECTORIOS (NÚMEROS DE EMERGENCIA) === */
+#emergency-directory {
+  background-color: var(--background-dark);
+  color: var(--text-color-light);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  overflow: auto;
+  max-height: 300px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.phone-link {
+    color: blue;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.phone-link:hover {
+    color: darkblue;
+    text-decoration: underline;
+}
+
+
+/* === BOTONES === */
+button {
+  background-color: var(--primary-color);
+  color: var(--text-color-dark);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+button:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.05);
+}
+
+/* === TABLAS === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  background-color: var(--background-dark);
+  color: var(--text-color-light);
+}
+
+th, td {
+  padding: 0.8rem;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+th {
+  background-color: var(--primary-color);
+  color: var(--text-color-dark);
+}
+
+td {
+  color: var(--text-color-light);
+}
+
+/* === SECCIÓN DE CITAS MÉDICAS === */
+#appointment-list {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  background-color: var(--background-light);
+  color: var(--text-color-light);
+}
+
+#appointment-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+#appointment-list li button {
+  background-color: var(--secondary-color);
+  color: var(--text-color-dark);
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+}
+
+#appointment-list li button:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.1);
+}
+
+/* === BOTÓN GENERAR IMAGEN === */
+#generate-image-button {
+  margin-top: 1rem;
+  background-color: var(--secondary-color);
+  color: var(--text-color-dark);
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#generate-image-button:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.05);
+}
+
+/* === SECCIÓN DE TEMPORIZADOR === */
+#timer-display {
+  font-size: 2rem;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+/* === SECCIÓN DE LISTA DE COMPRAS === */
+#shopping-list {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  background-color: var(--background-dark);
+  color: var(--text-color-light);
+}
+
+#shopping-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+#shopping-list li button {
+  background-color: var(--secondary-color);
+  color: var(--text-color-dark);
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+}
+
+#shopping-list li button:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.1);
+}
+
+/* === ESTILOS PARA INPUTS ESPECÍFICOS === */
+input[type="email"], input[type="date"], input[type="time"], input[type="text"], input[type="number"] {
+  width: calc(100% - 2rem);
+  box-sizing: border-box;
+}
+
+
+/* === MENÚS DESPLEGABLES === */
+select {
+  background-color: var(--background-light);
+  color: var(--text-color-light);
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+}
+
+/* === RESPONSIVIDAD === */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .section {
+    padding: 1rem;
+  }
+
+  #emergency-directory {
+    max-height: 200px;
+  }
+}
