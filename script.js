@@ -108,24 +108,35 @@ async function loadEmergencyNumbers() {
 }
 
 function populateCityDropdown() {
-    const citySelect = document.getElementById("city-select");
-    Object.keys(emergencyNumbers).forEach((city) => {
-        const option = document.createElement("option");
+    const dropdown = document.getElementById('cityDropdown');
+    dropdown.innerHTML = ''; // Limpia las opciones anteriores
+
+    // Itera sobre el objeto "emergencies" y toma las claves (que son las ciudades)
+    for (const city in emergencyNumbers.emergencies[0]) {
+        const option = document.createElement('option');
         option.value = city;
         option.textContent = city;
-        citySelect.appendChild(option);
-    });
+        dropdown.appendChild(option);
+    }
 }
 
-function showEmergencyNumbers() {
-    const city = document.getElementById("city-select").value;
-    const directory = emergencyNumbers[city];
-    const directoryDiv = document.getElementById("emergency-directory");
+function showEmergencyNumbers(cityName) {
+    const numbersList = document.getElementById('numbersList');
+    numbersList.innerHTML = '';
 
-    if (!directory) {
-        directoryDiv.innerHTML = "<p>No hay datos disponibles para esta ciudad.</p>";
-        return;
+    // Busca la ciudad seleccionada en el JSON y muestra los números de emergencia
+    for (const city of emergencyNumbers.emergencies) {
+        if (city[cityName]) {
+            city[cityName].forEach(number => {
+                const li = document.createElement('li');
+                li.textContent = `${number.name}: ${number.phone}`;
+                numbersList.appendChild(li);
+            });
+            break;
+        }
     }
+}
+
 
     directoryDiv.innerHTML =
         `<h4>Directorio de ${city}</h4><ul>` +
